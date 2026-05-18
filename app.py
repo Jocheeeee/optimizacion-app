@@ -211,7 +211,7 @@ with st.sidebar:
     method = st.selectbox(
         "Método de optimización",
         ["Método del gradiente",
-         "Gradiente conjugado",
+         "Método del gradiente conjugado",
          "Método de Newton"],
     )
 
@@ -243,7 +243,7 @@ with st.sidebar:
             help="Típico: 1e-4",
         )
     with col_w2:
-        default_c2 = 0.1 if method == "Gradiente conjugado" else 0.9
+        default_c2 = 0.1 if method == "Método del gradiente conjugado" else 0.9
         c2 = st.number_input(
             "c₂ (curvatura)",
             min_value=0.001, max_value=0.999,
@@ -251,7 +251,7 @@ with st.sidebar:
             help="Típico: 0.9 (Newton/gradiente), 0.1 (gradiente conjugado)",
         )
 
-    if method == "Gradiente conjugado":
+    if method == "Método del gradiente conjugado":
         cg_variant = st.radio(
             "Variante de β",
             ["PR+", "FR"],
@@ -281,7 +281,7 @@ if not run:
             - **Método del gradiente:** dirección $p_k = -\nabla f(x_k)$.
               Simple y robusto pero lento en valles estrechos (Rosenbrock).
 
-            - **Gradiente conjugado:** combina la dirección del gradiente con
+            - **Método del gradiente conjugado:** combina la dirección del gradiente con
               la anterior usando el coeficiente $\beta_k$ (Polak-Ribière+).
               Más rápido que el gradiente, sin necesitar la Hessiana.
 
@@ -347,7 +347,7 @@ with st.spinner("Optimizando..."):
             parsed.f, parsed.grad, x0,
             tol=tol, max_iter=int(max_iter), c1=c1, c2=c2,
         )
-    elif method == "Gradiente conjugado":
+    elif method == "Método del gradiente conjugado":
         result = conjugate_gradient(
             parsed.f, parsed.grad, x0,
             tol=tol, max_iter=int(max_iter), c1=c1, c2=c2,

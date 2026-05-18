@@ -90,5 +90,5 @@ def conjugate_gradient(
         "iterations": len(history) - 1,
         "stop_reason": stop_reason,
         "history": history,
-        "method": f"Gradiente conjugado ({variant})",
+        "method": f"Método del gradiente conjugado ({variant})",
     }
