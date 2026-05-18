@@ -162,8 +162,9 @@ st.markdown(
     """
     <div class="hero">
         <h1>📈 Optimización Irrestricta</h1>
-        <p>Minimización de funciones por método del gradiente, gradiente conjugado
-        y método de Newton — todos con búsqueda de línea por condiciones de Wolfe.</p>
+        <p>Minimización de funciones por método del gradiente, método del gradiente
+        conjugado y método de Newton — todos implementados con las condiciones de Wolfe
+        (primera y segunda condición).</p>
     </div>
     """,
     unsafe_allow_html=True,
