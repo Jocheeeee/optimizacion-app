@@ -212,6 +212,17 @@ span[class*="material-symbols"], span[class*="material-icons"],
 .material-icons, .material-symbols-rounded, .material-symbols-outlined {
     font-family: 'Material Symbols Rounded','Material Symbols Outlined','Material Icons' !important;
 }
+/* Ícono de ayuda (?) visible */
+[data-testid="stTooltipHoverTarget"], [data-testid="stTooltipIcon"],
+[data-testid="stTooltipHoverTarget"] svg, [data-testid="stTooltipIcon"] svg {
+    color: #8b949e !important;
+    fill: #8b949e !important;
+    opacity: 1 !important;
+}
+[data-testid="stTooltipHoverTarget"]:hover, [data-testid="stTooltipIcon"]:hover {
+    color: #58a6ff !important;
+    fill: #58a6ff !important;
+}
 p, span, label, li, .stMarkdown, [data-testid="stWidgetLabel"] p {
     color: #e6edf3 !important;
     font-size: 14px !important;
