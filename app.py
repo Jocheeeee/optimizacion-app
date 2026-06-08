@@ -821,6 +821,11 @@ def mostrar_metodo():
 
 # ─── MAIN APP ──────────────────────────────────────────────────────────────────
 def main_app():
+    if 'func_text' not in st.session_state:
+        st.session_state.func_text = "ln(x**2 + y**2) - 2*x*y"
+    if 'func_ctr' not in st.session_state:
+        st.session_state.func_ctr = 0
+
     with st.sidebar:
         st.markdown("""
         <span class="sidebar-title">💡 Diccionario</span>
@@ -871,9 +876,79 @@ def main_app():
         vars_input = st.text_input("Variables (separadas por coma)", value="x, y")
         vars_names = [v.strip() for v in vars_input.split(',')]
     with col2:
-        func_input = st.text_input(f"Función C({', '.join(vars_names)})", value="ln(x**2 + y**2) - 2*x*y")
+        func_input = st.text_input(
+            f"Función C({', '.join(vars_names)})",
+            value=st.session_state.func_text,
+            key=f'func_w_{st.session_state.func_ctr}'
+        )
+        st.session_state.func_text = func_input
+        try:
+            _syms_p = sp.symbols(' '.join(vars_names))
+            _syms_p = [_syms_p] if len(vars_names) == 1 else list(_syms_p)
+            _expr_p = parse_function(func_input, _syms_p)
+            if _expr_p is not None:
+                st.markdown('<div style="margin-top:8px; padding:10px 16px; background:rgba(63,185,80,0.06); border:1px solid rgba(63,185,80,0.2); border-radius:8px; text-align:center;">', unsafe_allow_html=True)
+                st.latex(sp.latex(_expr_p))
+                st.markdown('</div>', unsafe_allow_html=True)
+            elif func_input.strip():
+                st.markdown('<p style="color:#f85149; font-size:12px; margin-top:6px;">⚠ Función no reconocida — revisa la sintaxis</p>', unsafe_allow_html=True)
+        except Exception:
+            pass
     with col3:
         start_point = st.text_input("Punto inicial (x0, y0)", value="-1, 0")
+
+    # ── SYMBOL KEYBOARD ────────────────────────────────────────────────────────
+    st.markdown("""
+    <div style="margin:20px 0 6px;">
+        <span style="font-size:11px; font-weight:700; color:#8b949e; letter-spacing:2px; text-transform:uppercase;">
+            🎹 Teclado Matemático — clic para insertar en la función
+        </span>
+    </div>
+    """, unsafe_allow_html=True)
+
+    def _insert(code):
+        if code == "BACK":
+            st.session_state.func_text = st.session_state.func_text[:-1]
+        elif code == "CLEAR":
+            st.session_state.func_text = ""
+        else:
+            st.session_state.func_text += code
+        st.session_state.func_ctr += 1
+        st.rerun()
+
+    # Row 1 — Variables (dynamic + comunes)
+    st.markdown('<p style="color:#58a6ff; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin:8px 0 2px;">Variables</p>', unsafe_allow_html=True)
+    _user_vars = [(v, v) for v in vars_names]
+    _extra_vars = [(v, v) for v in ['x', 'y', 'z', 'x1', 'x2', 'y1', 'y2'] if v not in vars_names]
+    _all_var_btns = (_user_vars + _extra_vars)[:8]
+    _vc = st.columns(len(_all_var_btns))
+    for _c, (_d, _code) in zip(_vc, _all_var_btns):
+        with _c:
+            if st.button(_d, key=f"kv_{_code}", use_container_width=True):
+                _insert(_code)
+
+    # Row 2 — Operators
+    st.markdown('<p style="color:#f97316; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin:8px 0 2px;">Operadores</p>', unsafe_allow_html=True)
+    _ops = [("(", "("), (")", ")"), ("²", "**2"), ("³", "**3"), ("^n", "**"),
+            ("×", "*"), ("÷", "/"), ("+", "+"), ("−", "-"), ("√(", "sqrt("), ("⌫", "BACK")]
+    _oc = st.columns(len(_ops))
+    for _c, (_d, _code) in zip(_oc, _ops):
+        with _c:
+            if st.button(_d, key=f"ko_{_d}", use_container_width=True):
+                _insert(_code)
+
+    # Row 3 — Functions
+    st.markdown('<p style="color:#bc8cff; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin:8px 0 2px;">Funciones</p>', unsafe_allow_html=True)
+    _fns = [("ln()", "log("), ("log()", "log10("), ("eˣ", "exp("),
+            ("sin()", "sin("), ("cos()", "cos("), ("tan()", "tan("),
+            ("|x|", "abs("), ("π", "3.14159265"), ("e", "2.71828182"), ("🗑 Borrar", "CLEAR")]
+    _fc = st.columns(len(_fns))
+    for _c, (_d, _code) in zip(_fc, _fns):
+        with _c:
+            if st.button(_d, key=f"kf_{_d}", use_container_width=True):
+                _insert(_code)
+
+    st.markdown("<br>", unsafe_allow_html=True)
 
     # ── SECTION 2 ──────────────────────────────────────────────────────────────
     st.markdown("""
@@ -883,25 +958,51 @@ def main_app():
     </div>
     """, unsafe_allow_html=True)
 
+    # ── METHOD CARDS ───────────────────────────────────────────────────────────
+    if 'method_idx' not in st.session_state:
+        st.session_state.method_idx = 0
+
+    _methods = [
+        ("Gradiente",  "📉", "Método del Gradiente",             "#58a6ff", "rgba(88,166,255,0.08)",  "1er orden · Robusto · Fijo/Wolfe"),
+        ("Newton",     "🚀", "Método de Newton",                 "#bc8cff", "rgba(188,140,255,0.08)", "2do orden · Convergencia rápida"),
+        ("Conjugado",  "🎯", "Método del Gradiente Conjugado",   "#3fb950", "rgba(63,185,80,0.08)",   "Sin Hessiana · Eficiente"),
+    ]
+
+    card_cols = st.columns(3)
+    for i, (col, (short, icon, full, color, bg, desc)) in enumerate(zip(card_cols, _methods)):
+        with col:
+            is_sel = st.session_state.method_idx == i
+            st.markdown(f"""
+            <div style="background:{'rgba(88,166,255,0.08)' if i==0 and is_sel else 'rgba(188,140,255,0.08)' if i==1 and is_sel else 'rgba(63,185,80,0.08)' if i==2 and is_sel else '#0d1117'};
+                        border:{'2px solid '+color if is_sel else '1px solid #21262d'};
+                        border-radius:12px; padding:22px 16px 8px; text-align:center; margin-bottom:6px;">
+                <div style="font-size:32px; margin-bottom:8px;">{icon}</div>
+                <div style="font-weight:700; color:#e6edf3; font-size:15px; margin-bottom:5px;">{short}</div>
+                <div style="color:#8b949e; font-size:11px; line-height:1.6; margin-bottom:10px;">{desc}</div>
+            </div>
+            """, unsafe_allow_html=True)
+            if st.button("✓ Activo" if is_sel else "Seleccionar", key=f"mcard_{i}", use_container_width=True):
+                st.session_state.method_idx = i
+                st.rerun()
+
+    method = _methods[st.session_state.method_idx][2]
+
+    st.markdown("<br>", unsafe_allow_html=True)
     col_m1, col_m2, col_m3 = st.columns([1, 1, 1])
 
     with col_m1:
-        method = st.selectbox("Método de optimización:", [
-            "Método del Gradiente", "Método de Newton", "Método del Gradiente Conjugado"
-        ])
         max_iter = st.number_input("Iteraciones máximas", value=10, min_value=1)
 
     with col_m2:
         if method == "Método de Newton":
-            st.info("Calcula su propio paso. Si la Hessiana falla (no definida positiva), usará Matriz Identidad.")
+            st.info("Calcula su propio paso. Si la Hessiana falla, usará Matriz Identidad automáticamente.")
             alpha_type = "Newton"
         elif method == "Método del Gradiente Conjugado":
-            alpha_type = st.radio("Cálculo del tamaño de paso (alfa) para GC:",
-                                  ["Fijo", "Búsqueda de línea (Armijo)"], horizontal=True)
+            alpha_type = st.radio("Paso (alfa) para GC:", ["Fijo", "Búsqueda de línea (Armijo)"], horizontal=True)
             if alpha_type == "Fijo":
                 cg_alpha_val = st.number_input("Valor de alfa (GC):", value=0.01, format="%.4f")
             else:
-                cg_alpha_val = st.number_input("Alfa inicial para búsqueda (GC):", value=1.0, format="%.4f")
+                cg_alpha_val = st.number_input("Alfa inicial (GC):", value=1.0, format="%.4f")
         else:
             alpha_type = st.radio("Cálculo del paso (alfa):", ["Fijo", "Wolfe (Armijo)"],
                                   index=1, horizontal=True)
@@ -912,11 +1013,11 @@ def main_app():
                 wolfe_params = {}
                 w_c1, w_c2 = st.columns(2)
                 with w_c1:
-                    wolfe_params['alpha_init'] = st.number_input("Alfa inicial (α_0):", value=0.5, format="%.4f")
-                    wolfe_params['rho'] = st.number_input("Rho (ρ - reducción):", value=0.5, format="%.4f")
+                    wolfe_params['alpha_init'] = st.number_input("α₀ inicial:", value=0.5, format="%.4f")
+                    wolfe_params['rho'] = st.number_input("ρ (reducción):", value=0.5, format="%.4f")
                 with w_c2:
-                    wolfe_params['c1'] = st.number_input("Beta (β - Armijo):", value=0.25, format="%.4f")
-                    wolfe_sigma = st.number_input("Sigma (σ - Curvatura):", value=0.5, format="%.4f")
+                    wolfe_params['c1'] = st.number_input("β (Armijo):", value=0.25, format="%.4f")
+                    wolfe_sigma = st.number_input("σ (Curvatura):", value=0.5, format="%.4f")
 
     with col_m3:
         tolerancia = st.number_input("Tolerancia", value=0.001, format="%.4f")
@@ -1066,7 +1167,7 @@ def main_app():
                             x=x_range, y=y_range_arr, z=Z, colorscale='Plasma',
                             contours=dict(showlabels=True, labelfont=dict(size=10, color='white')),
                             colorbar=dict(title=dict(text="C(x,y)", font=dict(color='#8b949e')),
-                    tickfont=dict(color='#8b949e')),
+                                          tickfont=dict(color='#8b949e')),
                             name='Curvas de Nivel'
                         ))
                         fig_contour.add_trace(go.Scatter(
