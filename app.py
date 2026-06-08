@@ -415,7 +415,7 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
     border: 1px solid #21262d;
     border-top: 3px solid #f97316;
     border-radius: 0 0 10px 10px;
-    padding: 20px 18px;
+    padding: 18px 18px 20px;
     height: 100%;
     position: relative;
 }
@@ -431,7 +431,9 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
     letter-spacing: 2px;
     text-transform: uppercase;
 }
-.exam-box p { color: #c9d1d9 !important; line-height: 1.85 !important; }
+.exam-box p { color: #c9d1d9 !important; line-height: 1.7 !important; margin-bottom: 6px !important; }
+.exam-box ul { margin: 0 !important; padding-left: 18px !important; }
+.exam-box li { color: #c9d1d9 !important; margin-bottom: 10px !important; line-height: 1.6 !important; }
 .exam-box strong { color: #e6edf3 !important; }
 .exam-box code {
     background: rgba(88,166,255,0.1);
@@ -633,7 +635,7 @@ def run_gradient_descent(expr, vars_sym, x0, alpha_type, alpha_val, wolfe_params
                         break
 
             if k < 3:
-                step_info = f"**Iteración k = {k}**\n\n"
+                step_info = ""
                 step_info += f"- **Punto actual ($x_{k}$):** ${format_latex_array(curr_x)}$\n"
                 step_info += f"- **Evaluación del Gradiente $\\nabla C(x_{k})$:** ${format_latex_array(grad_val)}$\n"
                 step_info += f"- **Dirección de descenso ($d_{k} = -\\nabla C$):** ${format_latex_array(direction)}$\n"
@@ -700,7 +702,7 @@ def run_newton_method(expr, vars_sym, x0, max_iter, tol, norm_type):
 
         if k < max_iter and hess_inv is not None:
             if k < 3:
-                step_info = f"**Iteración k = {k}**\n\n"
+                step_info = ""
                 step_info += f"- **Punto actual ($x_{k}$):** ${format_latex_array(curr_x)}$\n"
                 step_info += f"- **Evaluación del Gradiente $\\nabla C(x_{k})$:** ${format_latex_array(grad_val)}$\n"
                 step_info += f"- **Matriz Hessiana $H(x_{k})$:**\n $${format_matrix_latex(hess_val)}$$\n"
@@ -779,7 +781,7 @@ def run_conjugate_gradient(expr, vars_sym, x0, alpha_type, alpha_val, max_iter, 
                 p_next = -grad_next_val + beta * p
 
             if k < 3:
-                step_info = f"**Iteración k = {k}**\n\n"
+                step_info = ""
                 step_info += f"- **Punto actual ($x_{k}$):** ${format_latex_array(curr_x)}$\n"
                 step_info += f"- **Gradiente $\\nabla C(x_{k})$:** ${format_latex_array(grad_val)}$\n"
                 step_info += f"- **Dirección conjugada ($p_{k}$):** ${format_latex_array(p)}$\n"
