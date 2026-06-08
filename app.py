@@ -223,6 +223,13 @@ span[class*="material-symbols"], span[class*="material-icons"],
     color: #58a6ff !important;
     fill: #58a6ff !important;
 }
+/* Globo de ayuda (popup): fondo oscuro + texto claro legible */
+[data-testid="stTooltipContent"], [data-testid="stTooltipContent"] *,
+div[data-baseweb="tooltip"], div[data-baseweb="tooltip"] * {
+    background-color: #1f2733 !important;
+    color: #e6edf3 !important;
+    border-radius: 8px !important;
+}
 p, span, label, li, .stMarkdown, [data-testid="stWidgetLabel"] p {
     color: #e6edf3 !important;
     font-size: 14px !important;
@@ -1061,42 +1068,60 @@ def main_app():
     method = _methods[st.session_state.method_idx][2]
 
     st.markdown("<br>", unsafe_allow_html=True)
-    col_m1, col_m2, col_m3 = st.columns([1, 1, 1])
 
-    with col_m1:
+    # ── Fila 1: parámetros generales ───────────────────────────────────────────
+    gen1, gen2, gen3 = st.columns(3)
+    with gen1:
         max_iter = st.number_input("Iteraciones máximas", value=10, min_value=1)
-
-    with col_m2:
-        if method == "Método de Newton":
-            st.info("Calcula su propio paso. Si la Hessiana falla, usará Matriz Identidad automáticamente.")
-            alpha_type = "Newton"
-        elif method == "Método del Gradiente Conjugado":
-            alpha_type = st.radio("Paso (alfa) para GC:", ["Fijo", "Búsqueda de línea (Armijo)"], horizontal=True)
-            if alpha_type == "Fijo":
-                cg_alpha_val = st.number_input("Valor de alfa (GC):", value=0.01, format="%.4f")
-            else:
-                cg_alpha_val = st.number_input("Alfa inicial (GC):", value=1.0, format="%.4f")
-        else:
-            alpha_type = st.radio("Cálculo del paso (alfa):", ["Fijo", "Wolfe (Armijo)"],
-                                  index=1, horizontal=True)
-            if alpha_type == "Fijo":
-                alpha_val = st.number_input("Valor de alfa:", value=0.01, format="%.4f")
-            else:
-                alpha_val = 0.0
-                wolfe_params = {}
-                w_c1, w_c2 = st.columns(2)
-                with w_c1:
-                    wolfe_params['alpha_init'] = st.number_input("α₀ inicial:", value=0.5, format="%.4f")
-                    wolfe_params['rho'] = st.number_input("ρ (reducción):", value=0.5, format="%.4f")
-                with w_c2:
-                    wolfe_params['c1'] = st.number_input("β (Armijo):", value=0.25, format="%.4f")
-                    wolfe_sigma = st.number_input("σ (Curvatura):", value=0.5, format="%.4f")
-
-    with col_m3:
-        tolerancia = st.number_input("Tolerancia", value=0.001, format="%.4f")
-        norm_type = st.selectbox("Norma para Error Relativo:",
+    with gen2:
+        tolerancia = st.number_input("Tolerancia", value=0.001, format="%.4f",
+                                     help="El algoritmo se detiene cuando el error relativo es menor a este valor.")
+    with gen3:
+        norm_type = st.selectbox("Norma para Error Relativo",
                                  ["L_infinito (Máximo)", "L2 (Euclidiana)", "L1 (Manhattan)"])
-        show_exam_mode = st.checkbox("📝 Mostrar Detalles en Modo Examen", value=True)
+
+    st.markdown("""
+    <p style="font-size:13px; font-weight:700; color:#58a6ff; letter-spacing:1px;
+              text-transform:uppercase; margin:18px 0 4px;">⚙️ Cálculo del tamaño de paso (α)</p>
+    """, unsafe_allow_html=True)
+
+    # ── Fila 2: tamaño de paso según método ────────────────────────────────────
+    if method == "Método de Newton":
+        st.info("El Método de Newton calcula su propio paso. Si la Hessiana falla (no definida positiva), usa Matriz Identidad automáticamente.")
+        alpha_type = "Newton"
+    elif method == "Método del Gradiente Conjugado":
+        alpha_type = st.radio("Estrategia:", ["Fijo", "Búsqueda de línea (Armijo)"], horizontal=True)
+        pc1, _pc2, _pc3 = st.columns(3)
+        with pc1:
+            if alpha_type == "Fijo":
+                cg_alpha_val = st.number_input("Valor de α", value=0.01, format="%.4f")
+            else:
+                cg_alpha_val = st.number_input("α inicial", value=1.0, format="%.4f")
+    else:  # Gradiente
+        alpha_type = st.radio("Estrategia:", ["Fijo", "Wolfe (Armijo)"], index=1, horizontal=True)
+        if alpha_type == "Fijo":
+            pc1, _pc2, _pc3 = st.columns(3)
+            with pc1:
+                alpha_val = st.number_input("Valor de α", value=0.01, format="%.4f")
+        else:
+            alpha_val = 0.0
+            wolfe_params = {}
+            wp1, wp2, wp3, wp4 = st.columns(4)
+            with wp1:
+                wolfe_params['alpha_init'] = st.number_input("α₀ inicial", value=0.5, format="%.4f",
+                                                             help="Paso inicial antes de reducir con backtracking.")
+            with wp2:
+                wolfe_params['rho'] = st.number_input("ρ (reducción)", value=0.5, format="%.4f",
+                                                      help="Factor por el que se reduce α en cada intento.")
+            with wp3:
+                wolfe_params['c1'] = st.number_input("β (Armijo)", value=0.25, format="%.4f",
+                                                    help="Constante de la condición de descenso suficiente (Armijo).")
+            with wp4:
+                wolfe_sigma = st.number_input("σ (Curvatura)", value=0.5, format="%.4f",
+                                             help="Constante de la condición de curvatura (2da condición de Wolfe).")
+
+    st.markdown("<br>", unsafe_allow_html=True)
+    show_exam_mode = st.checkbox("📝 Mostrar Detalles en Modo Examen", value=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
     col_btn1, col_btn2, col_btn3 = st.columns([1, 1, 1])
