@@ -404,45 +404,16 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
 /* LATEX / FÓRMULAS (que no se corten los exponentes) */
 [data-testid="stLatex"], .katex-display, .stMarkdown .katex-display {
     overflow: visible !important;
-    padding: 10px 4px !important;
-    margin: 0 !important;
+    padding: 6px 2px !important;
 }
-.katex { font-size: 1.35em !important; line-height: 1.6 !important; }
-.katex-display > .katex { white-space: normal !important; }
+.katex { font-size: 1.05em !important; }
 
-.exam-box {
-    background: #161b22;
-    border: 1px solid #21262d;
-    border-top: 3px solid #f97316;
-    border-radius: 0 0 10px 10px;
-    padding: 18px 18px 20px;
-    height: 100%;
-    position: relative;
+/* Tarjetas del modo examen (st.container border) */
+[data-testid="stVerticalBlockBorderWrapper"] {
+    background: #161b22 !important;
+    border-radius: 10px !important;
 }
-.exam-box-header {
-    background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(249,115,22,0.05));
-    border: 1px solid rgba(249,115,22,0.2);
-    border-bottom: none;
-    border-radius: 10px 10px 0 0;
-    padding: 8px 18px;
-    font-size: 11px;
-    font-weight: 700;
-    color: #f97316 !important;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-}
-.exam-box p { color: #c9d1d9 !important; line-height: 1.7 !important; margin-bottom: 6px !important; }
-.exam-box ul { margin: 0 !important; padding-left: 18px !important; }
-.exam-box li { color: #c9d1d9 !important; margin-bottom: 10px !important; line-height: 1.6 !important; }
-.exam-box strong { color: #e6edf3 !important; }
-.exam-box code {
-    background: rgba(88,166,255,0.1);
-    color: #79c0ff !important;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-size: 13px !important;
-    border: 1px solid rgba(88,166,255,0.15);
-}
+
 [data-testid="stDialog"], div[data-baseweb="modal"], div[role="dialog"] {
     background-color: #161b22 !important;
     border: 1px solid #30363d !important;
@@ -1174,8 +1145,14 @@ def main_app():
                     cols_exam = st.columns(len(exam_log))
                     for idx, step_txt in enumerate(exam_log):
                         with cols_exam[idx]:
-                            st.markdown(f'<div class="exam-box-header">ITERACIÓN k = {idx}</div>', unsafe_allow_html=True)
-                            st.markdown(f'<div class="exam-box">{step_txt}</div>', unsafe_allow_html=True)
+                            with st.container(border=True):
+                                st.markdown(
+                                    f"<div style='color:#f97316; font-weight:800; font-size:12px; "
+                                    f"letter-spacing:2px; text-transform:uppercase; margin-bottom:8px;'>"
+                                    f"🔸 Iteración k = {idx}</div>",
+                                    unsafe_allow_html=True
+                                )
+                                st.markdown(step_txt)
                     st.markdown("<br>", unsafe_allow_html=True)
 
                 col_g1, col_g2 = st.columns(2)
