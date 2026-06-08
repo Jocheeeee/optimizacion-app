@@ -1065,8 +1065,8 @@ def main_app():
                         fig_contour.add_trace(go.Contour(
                             x=x_range, y=y_range_arr, z=Z, colorscale='Plasma',
                             contours=dict(showlabels=True, labelfont=dict(size=10, color='white')),
-                            colorbar=dict(title="C(x,y)", tickfont=dict(color='#8b949e'),
-                                          titlefont=dict(color='#8b949e')),
+                            colorbar=dict(title=dict(text="C(x,y)", font=dict(color='#8b949e')),
+                    tickfont=dict(color='#8b949e')),
                             name='Curvas de Nivel'
                         ))
                         fig_contour.add_trace(go.Scatter(
