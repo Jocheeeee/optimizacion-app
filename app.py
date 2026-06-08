@@ -382,6 +382,16 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
     border-radius: 10px !important;
     overflow: hidden;
 }
+
+/* LATEX / FÓRMULAS (que no se corten los exponentes) */
+[data-testid="stLatex"], .katex-display, .stMarkdown .katex-display {
+    overflow: visible !important;
+    padding: 10px 4px !important;
+    margin: 0 !important;
+}
+.katex { font-size: 1.35em !important; line-height: 1.6 !important; }
+.katex-display > .katex { white-space: normal !important; }
+
 .exam-box {
     background: #161b22;
     border: 1px solid #21262d;
