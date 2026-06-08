@@ -206,6 +206,12 @@ st.markdown("""
 html, body, * {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
+/* Restaurar fuente de íconos Material (la flecha del expander, etc.) */
+[data-testid="stIconMaterial"],
+span[class*="material-symbols"], span[class*="material-icons"],
+.material-icons, .material-symbols-rounded, .material-symbols-outlined {
+    font-family: 'Material Symbols Rounded','Material Symbols Outlined','Material Icons' !important;
+}
 p, span, label, li, .stMarkdown, [data-testid="stWidgetLabel"] p {
     color: #e6edf3 !important;
     font-size: 14px !important;
@@ -638,8 +644,8 @@ def run_newton_method(expr, vars_sym, x0, max_iter, tol, norm_type):
 
         if k < max_iter:
             try:
-                hess_val = (np.array(hess_lambdified(*curr_x), dtype=float) if len(vars_sym) > 1
-                            else np.array([[hess_lambdified(curr_x[0])]], dtype=float))
+                n = len(vars_sym)
+                hess_val = np.array(hess_lambdified(*curr_x), dtype=float).reshape(n, n)
                 eigvals = np.linalg.eigvals(hess_val)
                 if np.any(eigvals <= 1e-8):
                     hess_inv = np.eye(len(vars_sym))
