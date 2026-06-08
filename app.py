@@ -904,9 +904,11 @@ def main_app():
     col1, col2, col3 = st.columns([1, 2, 1])
     with col1:
         vars_input = st.text_input(
-            "Variables (separadas por coma)",
+            "Variables",
             value=st.session_state.vars_text,
-            key=f'vars_w_{st.session_state.func_ctr}'
+            key=f'vars_w_{st.session_state.func_ctr}',
+            placeholder="x, y",
+            help="Sepáralas por coma. Ejemplos: x, y  ·  x1, x2"
         )
         st.session_state.vars_text = vars_input
         vars_names = [v.strip() for v in vars_input.split(',')]
@@ -914,14 +916,18 @@ def main_app():
         func_input = st.text_input(
             f"Función C({', '.join(vars_names)})",
             value=st.session_state.func_text,
-            key=f'func_w_{st.session_state.func_ctr}'
+            key=f'func_w_{st.session_state.func_ctr}',
+            placeholder="x**2 + y**2",
+            help="Potencias con ** o ^ · decimales con coma · funciones ln(), exp(), sqrt()"
         )
         st.session_state.func_text = func_input
     with col3:
         start_point = st.text_input(
-            "Punto inicial (separa con ; )",
+            "Punto inicial",
             value=st.session_state.start_text,
-            key=f'start_w_{st.session_state.func_ctr}'
+            key=f'start_w_{st.session_state.func_ctr}',
+            placeholder="1 ; 1",
+            help="Separa las coordenadas con punto y coma (;). Ejemplo: 1,5 ; -0,5"
         )
         st.session_state.start_text = start_point
 
