@@ -115,13 +115,10 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
 
-/* BASE */
 .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
     background-color: #0d1117 !important;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
-
-/* SIDEBAR */
 [data-testid="stSidebar"], [data-testid="stSidebar"] > div {
     background-color: #010409 !important;
     border-right: 1px solid #21262d !important;
@@ -129,8 +126,6 @@ st.markdown("""
 [data-testid="collapsedControl"], [data-testid="stSidebarCollapseButton"] {
     display: none !important;
 }
-
-/* HERO HEADER */
 .hero-header {
     background: linear-gradient(160deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
     border: 1px solid #21262d;
@@ -203,8 +198,6 @@ st.markdown("""
     font-weight: 400 !important;
     text-transform: uppercase;
 }
-
-/* TYPOGRAPHY */
 html, body, * {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
@@ -220,16 +213,12 @@ h1 { font-size: 24px !important; }
 h2 { font-size: 20px !important; }
 h3 { font-size: 16px !important; margin-top: 28px !important; color: #c9d1d9 !important; }
 h4 { font-size: 15px !important; color: #c9d1d9 !important; }
-
-/* FORMS */
 [data-testid="stForm"], .stFormCreator {
     background-color: #161b22 !important;
     border: 1px solid #21262d !important;
     border-radius: 12px !important;
     padding: 24px !important;
 }
-
-/* INSTRUCTIONS BOX */
 .instructions-box {
     background: linear-gradient(135deg, #161b22, #1a2035);
     border: 1px solid #21262d;
@@ -249,19 +238,6 @@ h4 { font-size: 15px !important; color: #c9d1d9 !important; }
     font-size: 13px !important;
     border: 1px solid rgba(88,166,255,0.2);
 }
-
-/* SIDEBAR METHOD CARDS */
-.method-card {
-    background: #0d1117;
-    border: 1px solid #21262d;
-    border-radius: 10px;
-    padding: 14px 16px;
-    margin-bottom: 10px;
-}
-.method-card strong { color: #e6edf3 !important; display: block; margin-bottom: 4px; }
-.method-card span { color: #8b949e !important; font-size: 12px !important; }
-
-/* USER BADGE */
 .user-badge {
     background: rgba(88,166,255,0.06);
     border: 1px solid rgba(88,166,255,0.15);
@@ -270,8 +246,6 @@ h4 { font-size: 15px !important; color: #c9d1d9 !important; }
     margin-bottom: 24px;
 }
 .user-badge span { color: #58a6ff !important; font-weight: 600 !important; }
-
-/* SIDEBAR TITLE */
 .sidebar-title {
     font-size: 17px !important;
     font-weight: 800 !important;
@@ -289,8 +263,6 @@ h4 { font-size: 15px !important; color: #c9d1d9 !important; }
     margin-bottom: 20px !important;
     display: block;
 }
-
-/* INPUTS */
 input, textarea {
     background-color: #161b22 !important;
     color: #e6edf3 !important;
@@ -306,16 +278,12 @@ input, textarea {
     color: #e6edf3 !important;
 }
 [data-baseweb="select"] svg { fill: #8b949e !important; }
-
-/* SELECT */
 [data-baseweb="select"] > div {
     background-color: #161b22 !important;
     color: #e6edf3 !important;
     border: 1px solid #30363d !important;
     border-radius: 8px !important;
 }
-
-/* NUMBER +/- BUTTONS */
 [data-testid="stNumberInputStepUp"],
 [data-testid="stNumberInputStepDown"],
 div[data-baseweb="input"] button {
@@ -333,8 +301,6 @@ div[data-baseweb="input"] button:hover {
 [data-testid="stNumberInputStepUp"] svg,
 [data-testid="stNumberInputStepDown"] svg,
 div[data-baseweb="input"] button svg { fill: currentColor !important; }
-
-/* DROPDOWNS */
 div[data-baseweb="popover"], div[data-baseweb="popover"] *,
 div[role="listbox"], div[role="listbox"] *,
 ul[role="listbox"], ul[role="listbox"] *,
@@ -347,8 +313,6 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
     background-color: #1f6feb !important;
     color: #ffffff !important;
 }
-
-/* BUTTONS */
 .stButton > button {
     background: #161b22 !important;
     color: #e6edf3 !important;
@@ -369,8 +333,6 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
 }
 .stButton > button:hover * { color: #ffffff !important; }
 .stButton > button p { white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; }
-
-/* RESOLVE BUTTON SPECIAL */
 .resolve-btn .stButton > button {
     background: linear-gradient(135deg, #1f6feb 0%, #8957e5 100%) !important;
     color: #ffffff !important;
@@ -387,14 +349,8 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
     box-shadow: 0 10px 32px rgba(88,166,255,0.42) !important;
     background: linear-gradient(135deg, #2d79f3 0%, #9d6af5 100%) !important;
 }
-
-/* RADIO */
 [data-testid="stRadio"] label span { color: #c9d1d9 !important; }
-
-/* CHECKBOX */
 [data-testid="stCheckbox"] label span { color: #c9d1d9 !important; }
-
-/* ALERTS */
 [data-testid="stAlert"] { border-radius: 10px !important; }
 [data-testid="stInfo"] {
     background: rgba(88,166,255,0.08) !important;
@@ -409,16 +365,12 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
     background: rgba(218,54,51,0.08) !important;
     border: 1px solid rgba(218,54,51,0.2) !important;
 }
-
-/* DATAFRAME */
 [data-testid="stDataFrame"] {
     background-color: #161b22 !important;
     border: 1px solid #21262d !important;
     border-radius: 10px !important;
     overflow: hidden;
 }
-
-/* EXAM BOX */
 .exam-box {
     background: #161b22;
     border: 1px solid #21262d;
@@ -450,8 +402,6 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
     font-size: 13px !important;
     border: 1px solid rgba(88,166,255,0.15);
 }
-
-/* DIALOG */
 [data-testid="stDialog"], div[data-baseweb="modal"], div[role="dialog"] {
     background-color: #161b22 !important;
     border: 1px solid #30363d !important;
@@ -460,11 +410,7 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
 div[role="dialog"] > div { background-color: #161b22 !important; }
 div[role="dialog"] h2, div[role="dialog"] h3 { color: #e6edf3 !important; }
 div[role="dialog"] p, div[role="dialog"] li { color: #c9d1d9 !important; }
-
-/* DIVIDERS */
 hr { border-color: #21262d !important; }
-
-/* SECTION NUMBER BADGES */
 .section-badge {
     display: inline-flex;
     align-items: center;
@@ -559,35 +505,28 @@ def run_gradient_descent(expr, vars_sym, x0, alpha_type, alpha_val, wolfe_params
     history = []
     backtrack_log = []
     exam_log = []
-
     f_lambdified = sp.lambdify(vars_sym, expr, 'numpy')
     grad_exprs = compute_gradient(expr, vars_sym)
     grad_lambdified = [sp.lambdify(vars_sym, g, 'numpy') for g in grad_exprs]
     curr_x = np.array(x0, dtype=float)
-
     for k in range(max_iter + 1):
         f_val = evaluate_func_safe(f_lambdified, curr_x, vars_sym)
         grad_val = (np.array([g(*curr_x) for g in grad_lambdified]) if len(vars_sym) > 1
                     else np.array([grad_lambdified[0](curr_x[0])]))
-
         rel_error = 0.0
         if k > 0:
             prev_x = np.array([history[-1][f'{v}'] for v in vars_sym])
             rel_error = calcular_error(curr_x, prev_x, norm_type)
-
         entry = {'Iteración': k, 'C(x)': f_val, '||∇C(x)||': np.linalg.norm(grad_val),
                  'Error Rel. (%)': rel_error * 100}
         for i, val in enumerate(curr_x): entry[f'{vars_sym[i]}'] = val
         for i, val in enumerate(grad_val): entry[f'g_{vars_sym[i]}'] = val
         history.append(entry)
-
         if k > 0 and rel_error < tol:
             break
-
         if k < max_iter:
             direction = -grad_val
             alpha = alpha_val
-
             if alpha_type == "Wolfe (Armijo)":
                 alpha = wolfe_params['alpha_init']
                 c1 = wolfe_params['c1']
@@ -606,7 +545,6 @@ def run_gradient_descent(expr, vars_sym, x0, alpha_type, alpha_val, wolfe_params
                         alpha *= rho
                     else:
                         break
-
             if k < 3:
                 step_info = f"**Iteración k = {k}**\n\n"
                 step_info += f"- **Punto actual ($x_{k}$):** ${format_latex_array(curr_x)}$\n"
@@ -615,36 +553,29 @@ def run_gradient_descent(expr, vars_sym, x0, alpha_type, alpha_val, wolfe_params
                 step_info += f"- **Tamaño de paso ($\\alpha_k$):** `{alpha:.4f}`\n"
                 step_info += f"- **Actualización:** $x_{k+1} = x_{k} + \\alpha_k d_{k} = {format_latex_array(curr_x + alpha * direction)}$\n"
                 exam_log.append(step_info)
-
             curr_x = curr_x - alpha * grad_val
-
     return pd.DataFrame(history), pd.DataFrame(backtrack_log), grad_exprs, exam_log
 
 def run_newton_method(expr, vars_sym, x0, max_iter, tol, norm_type):
     history = []
     exam_log = []
-
     f_lambdified = sp.lambdify(vars_sym, expr, 'numpy')
     grad_exprs = compute_gradient(expr, vars_sym)
     hess_expr = compute_hessian(expr, variables=vars_sym)
     grad_lambdified = [sp.lambdify(vars_sym, g, 'numpy') for g in grad_exprs]
     hess_lambdified = sp.lambdify(vars_sym, hess_expr, 'numpy')
     curr_x = np.array(x0, dtype=float)
-
     for k in range(max_iter + 1):
         f_val = evaluate_func_safe(f_lambdified, curr_x, vars_sym)
         grad_val = (np.array([g(*curr_x) for g in grad_lambdified]) if len(vars_sym) > 1
                     else np.array([grad_lambdified[0](curr_x[0])]))
-
         rel_error = 0.0
         if k > 0:
             prev_x = np.array([history[-1][f'{v}'] for v in vars_sym])
             rel_error = calcular_error(curr_x, prev_x, norm_type)
-
         accion_str = ""
         hess_inv = None
         hess_val = None
-
         if k < max_iter:
             try:
                 hess_val = (np.array(hess_lambdified(*curr_x), dtype=float) if len(vars_sym) > 1
@@ -660,19 +591,15 @@ def run_newton_method(expr, vars_sym, x0, max_iter, tol, norm_type):
                 hess_inv = np.eye(len(vars_sym))
                 accion_str = "Error al invertir -> Uso Matriz Identidad"
                 hess_val = np.eye(len(vars_sym))
-
         if k > 0 and rel_error < tol:
             accion_str = "Óptimo alcanzado"
-
         entry = {'Iteración': k, 'C(x)': f_val, '||∇C(x)||': np.linalg.norm(grad_val),
                  'Error Rel. (%)': rel_error * 100, 'Acción para sig. paso': accion_str}
         for i, val in enumerate(curr_x): entry[f'{vars_sym[i]}'] = val
         for i, val in enumerate(grad_val): entry[f'g_{vars_sym[i]}'] = val
         history.append(entry)
-
         if k > 0 and rel_error < tol:
             break
-
         if k < max_iter and hess_inv is not None:
             if k < 3:
                 step_info = f"**Iteración k = {k}**\n\n"
@@ -684,15 +611,12 @@ def run_newton_method(expr, vars_sym, x0, max_iter, tol, norm_type):
                 step_info += f"- **Paso de Newton ($d_{k} = -H^{{-1}}\\nabla C$):** ${format_latex_array(d_k)}$\n"
                 step_info += f"- **Actualización:** $x_{k+1} = x_{k} + d_{k} = {format_latex_array(curr_x + d_k)}$\n"
                 exam_log.append(step_info)
-
             curr_x = curr_x - hess_inv.dot(grad_val)
-
     return pd.DataFrame(history), exam_log
 
 def run_conjugate_gradient(expr, vars_sym, x0, alpha_type, alpha_val, max_iter, tol, norm_type):
     history = []
     exam_log = []
-
     f_lambdified = sp.lambdify(vars_sym, expr, 'numpy')
     grad_exprs = compute_gradient(expr, vars_sym)
     grad_lambdified = [sp.lambdify(vars_sym, g, 'numpy') for g in grad_exprs]
@@ -700,30 +624,24 @@ def run_conjugate_gradient(expr, vars_sym, x0, alpha_type, alpha_val, max_iter, 
     grad_val = (np.array([g(*curr_x) for g in grad_lambdified]) if len(vars_sym) > 1
                 else np.array([grad_lambdified[0](curr_x[0])]))
     p = -grad_val.copy()
-
     for k in range(max_iter + 1):
         f_val = evaluate_func_safe(f_lambdified, curr_x, vars_sym)
         grad_val = (np.array([g(*curr_x) for g in grad_lambdified]) if len(vars_sym) > 1
                     else np.array([grad_lambdified[0](curr_x[0])]))
         norm_grad = np.linalg.norm(grad_val)
-
         rel_error = 0.0
         if k > 0:
             prev_x = np.array([history[-1][f'{v}'] for v in vars_sym])
             rel_error = calcular_error(curr_x, prev_x, norm_type)
-
         entry = {'Iteración': k, 'C(x)': f_val, '||∇C(x)||': norm_grad, 'Error Rel. (%)': rel_error * 100}
         for i, val in enumerate(curr_x): entry[f'{vars_sym[i]}'] = val
         for i, val in enumerate(grad_val): entry[f'g_{vars_sym[i]}'] = val
         history.append(entry)
-
         if k > 0 and (rel_error < tol or norm_grad < 1e-6):
             break
-
         if k < max_iter:
             if np.dot(grad_val, p) >= 0:
                 p = -grad_val
-
             if alpha_type == "Fijo":
                 alpha = alpha_val
             else:
@@ -736,14 +654,12 @@ def run_conjugate_gradient(expr, vars_sym, x0, alpha_type, alpha_val, max_iter, 
                     if f_new <= f_val + c1 * alpha * np.dot(grad_val, p):
                         break
                     alpha *= rho
-
             next_x = curr_x + alpha * p
             grad_next_val = (np.array([g(*next_x) for g in grad_lambdified]) if len(vars_sym) > 1
                              else np.array([grad_lambdified[0](next_x[0])]))
             denom = np.dot(grad_val, grad_val)
             beta_fr = 0.0 if denom < 1e-12 else np.dot(grad_next_val, grad_next_val) / denom
             fr_exploto = beta_fr > 10
-
             if fr_exploto:
                 yk = grad_next_val - grad_val
                 beta_pr = np.dot(grad_next_val, yk) / denom
@@ -752,7 +668,6 @@ def run_conjugate_gradient(expr, vars_sym, x0, alpha_type, alpha_val, max_iter, 
             else:
                 beta = beta_fr
                 p_next = -grad_next_val + beta * p
-
             if k < 3:
                 step_info = f"**Iteración k = {k}**\n\n"
                 step_info += f"- **Punto actual ($x_{k}$):** ${format_latex_array(curr_x)}$\n"
@@ -766,17 +681,14 @@ def run_conjugate_gradient(expr, vars_sym, x0, alpha_type, alpha_val, max_iter, 
                     step_info += "\n\n⚠️ **Observación Académica**\n\n"
                     step_info += (
                         "No es recomendable continuar utilizando Fletcher-Reeves en esta iteración. "
-                        "El factor de conjugación β obtuvo un valor excesivamente grande, provocando "
-                        "una dirección conjugada muy agresiva y potencialmente inestable. "
+                        "El factor de conjugación β obtuvo un valor excesivamente grande. "
                         "Por esta razón, el algoritmo cambia automáticamente a "
                         "**Polak-Ribière**, más robusto en funciones no cuadráticas.\n\n"
                         f"**β (Fletcher-Reeves original) = {beta_fr:.4f}**"
                     )
                 exam_log.append(step_info)
-
             p = p_next
             curr_x = next_x
-
     return pd.DataFrame(history), exam_log
 
 # ─── DIALOG ────────────────────────────────────────────────────────────────────
@@ -790,7 +702,6 @@ def mostrar_metodo():
     div[role="dialog"] p, div[role="dialog"] li { color: #c9d1d9 !important; }
     </style>
     """, unsafe_allow_html=True)
-
     metodo = st.session_state.metodo_info
     if metodo == "gradiente":
         st.subheader("📉 Método del Gradiente")
@@ -842,7 +753,6 @@ def main_app():
             st.session_state.metodo_info = "conjugado"
             mostrar_metodo()
 
-    # ── HERO ───────────────────────────────────────────────────────────────────
     st.markdown("""
     <div class="hero-header">
         <div class="hero-badge">⚡ &nbsp;Cálculo Numérico · Optimización Numérica</div>
@@ -852,7 +762,6 @@ def main_app():
     </div>
     """, unsafe_allow_html=True)
 
-    # ── INSTRUCTIONS ───────────────────────────────────────────────────────────
     st.markdown("""
     <div class="instructions-box">
         <h4>📖 Resuelve tus Guías de Estudio</h4>
@@ -864,7 +773,6 @@ def main_app():
     </div>
     """, unsafe_allow_html=True)
 
-    # ── SECTION 1 ──────────────────────────────────────────────────────────────
     st.markdown("""
     <div class="section-badge">
         <span class="section-num">1</span>
@@ -898,7 +806,6 @@ def main_app():
     with col3:
         start_point = st.text_input("Punto inicial (x0, y0)", value="-1, 0")
 
-    # ── SYMBOL KEYBOARD ────────────────────────────────────────────────────────
     st.markdown("""
     <div style="margin:20px 0 6px;">
         <span style="font-size:11px; font-weight:700; color:#8b949e; letter-spacing:2px; text-transform:uppercase;">
@@ -907,7 +814,7 @@ def main_app():
     </div>
     """, unsafe_allow_html=True)
 
-       def _insert(code):
+    def _insert(code):
         if code == "BACK":
             st.session_state.func_text = st.session_state.func_text[:-1]
         elif code == "CLEAR":
@@ -928,19 +835,16 @@ def main_app():
                     if st.button(_d, key=f"{prefix}_{_start + _ci}", use_container_width=True):
                         _insert(_code)
 
-    # Row 1 — Variables
     st.markdown('<p style="color:#58a6ff; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin:8px 0 2px;">Variables</p>', unsafe_allow_html=True)
     _user_vars = [(v, v) for v in vars_names]
     _extra_vars = [(v, v) for v in ['x', 'y', 'z', 'x1', 'x2', 'y1', 'y2'] if v not in vars_names]
     _render_keys((_user_vars + _extra_vars)[:9], "kv")
 
-    # Row 2 — Operators
     st.markdown('<p style="color:#f97316; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin:8px 0 2px;">Operadores</p>', unsafe_allow_html=True)
     _ops = [("(", "("), (")", ")"), ("x²", "**2"), ("x³", "**3"), ("xⁿ", "**"),
             ("×", "*"), ("÷", "/"), ("+", "+"), ("−", "-"), ("√", "sqrt("), ("⌫", "BACK")]
     _render_keys(_ops, "ko")
 
-    # Row 3 — Functions
     st.markdown('<p style="color:#bc8cff; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin:8px 0 2px;">Funciones</p>', unsafe_allow_html=True)
     _fns = [("ln", "log("), ("log", "log10("), ("eˣ", "exp("),
             ("sin", "sin("), ("cos", "cos("), ("tan", "tan("),
@@ -949,9 +853,6 @@ def main_app():
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    # ── SECTION 2 ──────────────────────────────────────────────────────────────
     st.markdown("""
     <div class="section-badge" style="margin-top:24px;">
         <span class="section-num">2</span>
@@ -959,7 +860,6 @@ def main_app():
     </div>
     """, unsafe_allow_html=True)
 
-    # ── METHOD CARDS ───────────────────────────────────────────────────────────
     if 'method_idx' not in st.session_state:
         st.session_state.method_idx = 0
 
@@ -1033,7 +933,6 @@ def main_app():
         execute = st.button("⚡ Resolver Problema")
         st.markdown('</div>', unsafe_allow_html=True)
 
-    # ── SECTION 3: RESULTS ─────────────────────────────────────────────────────
     if execute:
         st.markdown("""
         <div class="section-badge" style="margin-top:32px;">
@@ -1071,7 +970,6 @@ def main_app():
                         int(max_iter), tolerancia, norm_type
                     )
 
-                # EXAM MODE
                 if show_exam_mode and exam_log:
                     st.markdown("#### 📝 Apuntes del Profesor: Primeras iteraciones")
                     st.info(f"Mostrando los cálculos detallados para las primeras **{len(exam_log)}** iteraciones — **{method}**.")
@@ -1084,7 +982,6 @@ def main_app():
 
                 col_g1, col_g2 = st.columns(2)
 
-                # LEFT: trajectory
                 with col_g1:
                     st.markdown("#### Trayectoria y Curvas de Nivel")
                     f_lambdified_plot = sp.lambdify(vars_sym, expr, 'numpy')
@@ -1193,7 +1090,6 @@ def main_app():
                     else:
                         st.info("La gráfica de trayectoria interactiva solo está disponible para 1 o 2 variables.")
 
-                # RIGHT: convergence
                 with col_g2:
                     st.markdown("#### Análisis de Convergencia")
                     if len(results) > 0:
