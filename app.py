@@ -814,11 +814,11 @@ def mostrar_metodo():
 # ─── MAIN APP ──────────────────────────────────────────────────────────────────
 def main_app():
     if 'func_text' not in st.session_state:
-        st.session_state.func_text = "ln(x**2 + y**2) - 2*x*y"
+        st.session_state.func_text = "x**2 + y**2"
     if 'vars_text' not in st.session_state:
         st.session_state.vars_text = "x, y"
     if 'start_text' not in st.session_state:
-        st.session_state.start_text = "-1 ; 0"
+        st.session_state.start_text = "1 ; 1"
     if 'func_ctr' not in st.session_state:
         st.session_state.func_ctr = 0
 
@@ -901,17 +901,6 @@ def main_app():
             key=f'func_w_{st.session_state.func_ctr}'
         )
         st.session_state.func_text = func_input
-        try:
-            _syms_p = sp.symbols(' '.join(vars_names))
-            _syms_p = [_syms_p] if len(vars_names) == 1 else list(_syms_p)
-            _expr_p = parse_function(func_input, _syms_p)
-            if _expr_p is not None:
-                st.markdown('<p style="color:#3fb950; font-size:12px; font-weight:600; margin:8px 0 4px;">✅ Función reconocida:</p>', unsafe_allow_html=True)
-                st.latex(pretty_latex(func_input))
-            elif func_input.strip():
-                st.markdown('<p style="color:#f85149; font-size:12px; margin-top:6px;">⚠ Función no reconocida — revisa la sintaxis</p>', unsafe_allow_html=True)
-        except Exception:
-            pass
     with col3:
         start_point = st.text_input(
             "Punto inicial (separa con ; )",
@@ -920,7 +909,20 @@ def main_app():
         )
         st.session_state.start_text = start_point
 
-    with st.expander("ℹ️ ¿Cómo escribir la función? (guía rápida de sintaxis)"):
+    # ── PREVIEW (a todo el ancho, debajo de los campos) ────────────────────────
+    try:
+        _syms_p = sp.symbols(' '.join(vars_names))
+        _syms_p = [_syms_p] if len(vars_names) == 1 else list(_syms_p)
+        _expr_p = parse_function(func_input, _syms_p)
+        if _expr_p is not None:
+            st.markdown('<p style="color:#3fb950; font-size:13px; font-weight:600; margin:10px 0 2px;">✅ Función reconocida:</p>', unsafe_allow_html=True)
+            st.latex(pretty_latex(func_input))
+        elif func_input.strip():
+            st.markdown('<p style="color:#f85149; font-size:13px; margin-top:10px;">⚠ Función no reconocida — revisa la sintaxis</p>', unsafe_allow_html=True)
+    except Exception:
+        pass
+
+    with st.expander("¿Cómo escribir la función?  —  guía rápida de sintaxis"):
         st.markdown("""
         <div style="font-size:13px; line-height:1.9; color:#c9d1d9;">
         <b style="color:#58a6ff;">Potencias</b> &nbsp;→&nbsp; <code>x**2</code> (x al cuadrado), <code>y**4</code>, <code>x**0.5</code><br>
