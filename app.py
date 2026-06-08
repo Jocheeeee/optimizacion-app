@@ -960,10 +960,8 @@ def main_app():
             if _expr_p is not None:
                 st.markdown('<p style="color:#3fb950; font-size:12px; font-weight:600; margin:8px 0 -4px;">✅ Función reconocida:</p>', unsafe_allow_html=True)
                 st.latex(sp.latex(_expr_p))
-            elif func_input.strip():
-                st.markdown('<p style="color:#f85149; font-size:12px; margin-top:6px;">⚠ Función no reconocida — revisa la sintaxis</p>', unsafe_allow_html=True)
-        except Exception:
-            pass
+                            st.markdown('<p style="color:#3fb950; font-size:12px; font-weight:600; margin:8px 0 -4px;">✅ Función reconocida <span style="color:#8b949e; font-weight:400;">(el orden de los términos puede variar, es la misma función)</span>:</p>', unsafe_allow_html=True)
+                st.latex(sp.latex(_expr_p, order='none'))
     with col3:
         start_point = st.text_input(
             "Punto inicial (separa con ; )",
