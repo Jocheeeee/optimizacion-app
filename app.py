@@ -120,13 +120,10 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
 
-/* BASE */
 .stApp, [data-testid="stAppViewContainer"], [data-testid="stHeader"] {
     background-color: #0d1117 !important;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
-
-/* SIDEBAR */
 [data-testid="stSidebar"], [data-testid="stSidebar"] > div {
     background-color: #010409 !important;
     border-right: 1px solid #21262d !important;
@@ -134,8 +131,6 @@ st.markdown("""
 [data-testid="collapsedControl"], [data-testid="stSidebarCollapseButton"] {
     display: none !important;
 }
-
-/* HERO HEADER */
 .hero-header {
     background: linear-gradient(160deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
     border: 1px solid #21262d;
@@ -208,8 +203,6 @@ st.markdown("""
     font-weight: 400 !important;
     text-transform: uppercase;
 }
-
-/* TYPOGRAPHY */
 html, body, * {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
 }
@@ -225,16 +218,12 @@ h1 { font-size: 24px !important; }
 h2 { font-size: 20px !important; }
 h3 { font-size: 16px !important; margin-top: 28px !important; color: #c9d1d9 !important; }
 h4 { font-size: 15px !important; color: #c9d1d9 !important; }
-
-/* FORMS */
 [data-testid="stForm"], .stFormCreator {
     background-color: #161b22 !important;
     border: 1px solid #21262d !important;
     border-radius: 12px !important;
     padding: 24px !important;
 }
-
-/* INSTRUCTIONS BOX */
 .instructions-box {
     background: linear-gradient(135deg, #161b22, #1a2035);
     border: 1px solid #21262d;
@@ -254,19 +243,6 @@ h4 { font-size: 15px !important; color: #c9d1d9 !important; }
     font-size: 13px !important;
     border: 1px solid rgba(88,166,255,0.2);
 }
-
-/* SIDEBAR METHOD CARDS */
-.method-card {
-    background: #0d1117;
-    border: 1px solid #21262d;
-    border-radius: 10px;
-    padding: 14px 16px;
-    margin-bottom: 10px;
-}
-.method-card strong { color: #e6edf3 !important; display: block; margin-bottom: 4px; }
-.method-card span { color: #8b949e !important; font-size: 12px !important; }
-
-/* USER BADGE */
 .user-badge {
     background: rgba(88,166,255,0.06);
     border: 1px solid rgba(88,166,255,0.15);
@@ -275,8 +251,6 @@ h4 { font-size: 15px !important; color: #c9d1d9 !important; }
     margin-bottom: 24px;
 }
 .user-badge span { color: #58a6ff !important; font-weight: 600 !important; }
-
-/* SIDEBAR TITLE */
 .sidebar-title {
     font-size: 17px !important;
     font-weight: 800 !important;
@@ -294,8 +268,6 @@ h4 { font-size: 15px !important; color: #c9d1d9 !important; }
     margin-bottom: 20px !important;
     display: block;
 }
-
-/* INPUTS */
 input, textarea {
     background-color: #161b22 !important;
     color: #e6edf3 !important;
@@ -311,16 +283,12 @@ input, textarea {
     color: #e6edf3 !important;
 }
 [data-baseweb="select"] svg { fill: #8b949e !important; }
-
-/* SELECT */
 [data-baseweb="select"] > div {
     background-color: #161b22 !important;
     color: #e6edf3 !important;
     border: 1px solid #30363d !important;
     border-radius: 8px !important;
 }
-
-/* NUMBER +/- BUTTONS */
 [data-testid="stNumberInputStepUp"],
 [data-testid="stNumberInputStepDown"],
 div[data-baseweb="input"] button {
@@ -338,8 +306,6 @@ div[data-baseweb="input"] button:hover {
 [data-testid="stNumberInputStepUp"] svg,
 [data-testid="stNumberInputStepDown"] svg,
 div[data-baseweb="input"] button svg { fill: currentColor !important; }
-
-/* DROPDOWNS */
 div[data-baseweb="popover"], div[data-baseweb="popover"] *,
 div[role="listbox"], div[role="listbox"] *,
 ul[role="listbox"], ul[role="listbox"] *,
@@ -352,8 +318,6 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
     background-color: #1f6feb !important;
     color: #ffffff !important;
 }
-
-/* BUTTONS */
 .stButton > button {
     background: #161b22 !important;
     color: #e6edf3 !important;
@@ -374,8 +338,6 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
 }
 .stButton > button:hover * { color: #ffffff !important; }
 .stButton > button p { white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; }
-
-/* RESOLVE BUTTON SPECIAL */
 .resolve-btn .stButton > button {
     background: linear-gradient(135deg, #1f6feb 0%, #8957e5 100%) !important;
     color: #ffffff !important;
@@ -392,14 +354,8 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
     box-shadow: 0 10px 32px rgba(88,166,255,0.42) !important;
     background: linear-gradient(135deg, #2d79f3 0%, #9d6af5 100%) !important;
 }
-
-/* RADIO */
 [data-testid="stRadio"] label span { color: #c9d1d9 !important; }
-
-/* CHECKBOX */
 [data-testid="stCheckbox"] label span { color: #c9d1d9 !important; }
-
-/* ALERTS */
 [data-testid="stAlert"] { border-radius: 10px !important; }
 [data-testid="stInfo"] {
     background: rgba(88,166,255,0.08) !important;
@@ -414,16 +370,12 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
     background: rgba(218,54,51,0.08) !important;
     border: 1px solid rgba(218,54,51,0.2) !important;
 }
-
-/* DATAFRAME */
 [data-testid="stDataFrame"] {
     background-color: #161b22 !important;
     border: 1px solid #21262d !important;
     border-radius: 10px !important;
     overflow: hidden;
 }
-
-/* EXAM BOX */
 .exam-box {
     background: #161b22;
     border: 1px solid #21262d;
@@ -455,8 +407,6 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
     font-size: 13px !important;
     border: 1px solid rgba(88,166,255,0.15);
 }
-
-/* DIALOG */
 [data-testid="stDialog"], div[data-baseweb="modal"], div[role="dialog"] {
     background-color: #161b22 !important;
     border: 1px solid #30363d !important;
@@ -465,11 +415,7 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
 div[role="dialog"] > div { background-color: #161b22 !important; }
 div[role="dialog"] h2, div[role="dialog"] h3 { color: #e6edf3 !important; }
 div[role="dialog"] p, div[role="dialog"] li { color: #c9d1d9 !important; }
-
-/* DIVIDERS */
 hr { border-color: #21262d !important; }
-
-/* SECTION NUMBER BADGES */
 .section-badge {
     display: inline-flex;
     align-items: center;
@@ -522,16 +468,11 @@ def format_matrix_latex(mat):
     return res
 
 def parse_function(func_str, vars_list):
-    """Interpreta la función aceptando notación natural:
-    - Multiplicación implícita: 4xy -> 4*x*y, 2x1 -> 2*x1
-    - Potencia con ^ o **,  ln() o log(),  coma decimal (0,5 -> 0.5)
-    Respeta variables con subíndice (x1, x2) y funciones (exp, sqrt, sin...)."""
     var_names = [str(v) for v in vars_list]
     try:
         s = func_str.replace('^', '**')
-        s = re.sub(r'\bln\b', 'log', s)            # ln -> log (palabra completa)
-        s = re.sub(r'(\d),(\d)', r'\1.\2', s)      # coma decimal -> punto
-
+        s = re.sub(r'\bln\b', 'log', s)
+        s = re.sub(r'(\d),(\d)', r'\1.\2', s)
         varset = set(var_names)
         def can_split(symbol):
             if symbol in varset:
@@ -539,7 +480,6 @@ def parse_function(func_str, vars_list):
             if any(c.isdigit() for c in symbol):
                 return False
             return _token_splittable(symbol)
-
         T = (standard_transformations + (
             convert_xor, split_symbols_custom(can_split),
             implicit_multiplication, implicit_application))
@@ -555,8 +495,6 @@ def parse_function(func_str, vars_list):
             return None
 
 def parse_start_point(raw):
-    """Punto inicial estilo chileno: decimales con coma, coordenadas separadas
-    por punto y coma (;). También acepta espacios como separador."""
     raw = raw.strip()
     parts = raw.split(';') if ';' in raw else re.split(r'\s+', raw)
     vals = []
@@ -885,7 +823,6 @@ def main_app():
             st.session_state.metodo_info = "conjugado"
             mostrar_metodo()
 
-    # ── HERO ───────────────────────────────────────────────────────────────────
     st.markdown("""
     <div class="hero-header">
         <div class="hero-badge">⚡ &nbsp;Cálculo Numérico · Optimización Numérica</div>
@@ -895,7 +832,6 @@ def main_app():
     </div>
     """, unsafe_allow_html=True)
 
-    # ── INSTRUCTIONS ───────────────────────────────────────────────────────────
     st.markdown("""
     <div class="instructions-box">
         <h4>📖 Resuelve tus Guías de Estudio</h4>
@@ -907,7 +843,6 @@ def main_app():
     </div>
     """, unsafe_allow_html=True)
 
-    # ── SECTION 1 ──────────────────────────────────────────────────────────────
     st.markdown("""
     <div class="section-badge">
         <span class="section-num">1</span>
@@ -915,7 +850,6 @@ def main_app():
     </div>
     """, unsafe_allow_html=True)
 
-    # ── EXAMPLES DROPDOWN ──────────────────────────────────────────────────────
     _examples = {
         "— Elige un ejemplo o escribe el tuyo —": None,
         "Cuadrática simple · x² + y²": ("x, y", "x**2 + y**2", "1 ; 1"),
@@ -958,10 +892,12 @@ def main_app():
             _syms_p = [_syms_p] if len(vars_names) == 1 else list(_syms_p)
             _expr_p = parse_function(func_input, _syms_p)
             if _expr_p is not None:
-                st.markdown('<p style="color:#3fb950; font-size:12px; font-weight:600; margin:8px 0 -4px;">✅ Función reconocida:</p>', unsafe_allow_html=True)
-                st.latex(sp.latex(_expr_p))
-                            st.markdown('<p style="color:#3fb950; font-size:12px; font-weight:600; margin:8px 0 -4px;">✅ Función reconocida <span style="color:#8b949e; font-weight:400;">(el orden de los términos puede variar, es la misma función)</span>:</p>', unsafe_allow_html=True)
+                st.markdown('<p style="color:#3fb950; font-size:12px; font-weight:600; margin:8px 0 -4px;">✅ Función reconocida <span style="color:#8b949e; font-weight:400;">(el orden de los términos puede variar, es la misma función)</span>:</p>', unsafe_allow_html=True)
                 st.latex(sp.latex(_expr_p, order='none'))
+            elif func_input.strip():
+                st.markdown('<p style="color:#f85149; font-size:12px; margin-top:6px;">⚠ Función no reconocida — revisa la sintaxis</p>', unsafe_allow_html=True)
+        except Exception:
+            pass
     with col3:
         start_point = st.text_input(
             "Punto inicial (separa con ; )",
@@ -970,7 +906,6 @@ def main_app():
         )
         st.session_state.start_text = start_point
 
-    # ── MINI GUÍA DE SINTAXIS ──────────────────────────────────────────────────
     with st.expander("ℹ️ ¿Cómo escribir la función? (guía rápida de sintaxis)"):
         st.markdown("""
         <div style="font-size:13px; line-height:1.9; color:#c9d1d9;">
@@ -994,7 +929,6 @@ def main_app():
         </div>
         """, unsafe_allow_html=True)
 
-    # ── SYMBOL KEYBOARD ────────────────────────────────────────────────────────
     st.markdown("""
     <div style="margin:20px 0 6px;">
         <span style="font-size:11px; font-weight:700; color:#8b949e; letter-spacing:2px; text-transform:uppercase;">
@@ -1024,19 +958,16 @@ def main_app():
                     if st.button(_d, key=f"{prefix}_{_start + _ci}", use_container_width=True):
                         _insert(_code)
 
-    # Row 1 — Variables
     st.markdown('<p style="color:#58a6ff; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin:8px 0 2px;">Variables</p>', unsafe_allow_html=True)
     _user_vars = [(v, v) for v in vars_names]
     _extra_vars = [(v, v) for v in ['x', 'y', 'z', 'x1', 'x2', 'y1', 'y2'] if v not in vars_names]
     _render_keys((_user_vars + _extra_vars)[:9], "kv")
 
-    # Row 2 — Operators
     st.markdown('<p style="color:#f97316; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin:8px 0 2px;">Operadores</p>', unsafe_allow_html=True)
     _ops = [("(", "("), (")", ")"), ("x²", "**2"), ("x³", "**3"), ("xⁿ", "**"),
             ("×", "*"), ("÷", "/"), ("+", "+"), ("−", "-"), ("√", "sqrt("), ("⌫", "BACK")]
     _render_keys(_ops, "ko")
 
-    # Row 3 — Functions
     st.markdown('<p style="color:#bc8cff; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin:8px 0 2px;">Funciones</p>', unsafe_allow_html=True)
     _fns = [("ln", "log("), ("log", "log10("), ("eˣ", "exp("),
             ("sin", "sin("), ("cos", "cos("), ("tan", "tan("),
@@ -1045,7 +976,6 @@ def main_app():
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # ── SECTION 2 ──────────────────────────────────────────────────────────────
     st.markdown("""
     <div class="section-badge" style="margin-top:24px;">
         <span class="section-num">2</span>
@@ -1053,7 +983,6 @@ def main_app():
     </div>
     """, unsafe_allow_html=True)
 
-    # ── METHOD CARDS ───────────────────────────────────────────────────────────
     if 'method_idx' not in st.session_state:
         st.session_state.method_idx = 0
 
@@ -1127,7 +1056,6 @@ def main_app():
         execute = st.button("⚡ Resolver Problema")
         st.markdown('</div>', unsafe_allow_html=True)
 
-    # ── SECTION 3: RESULTS ─────────────────────────────────────────────────────
     if execute:
         st.markdown("""
         <div class="section-badge" style="margin-top:32px;">
@@ -1164,7 +1092,6 @@ def main_app():
                         int(max_iter), tolerancia, norm_type
                     )
 
-                # EXAM MODE
                 if show_exam_mode and exam_log:
                     st.markdown("#### 📝 Apuntes del Profesor: Primeras iteraciones")
                     st.info(f"Mostrando los cálculos detallados para las primeras **{len(exam_log)}** iteraciones — **{method}**.")
@@ -1177,7 +1104,6 @@ def main_app():
 
                 col_g1, col_g2 = st.columns(2)
 
-                # LEFT: trajectory
                 with col_g1:
                     st.markdown("#### Trayectoria y Curvas de Nivel")
                     f_lambdified_plot = sp.lambdify(vars_sym, expr, 'numpy')
@@ -1286,7 +1212,6 @@ def main_app():
                     else:
                         st.info("La gráfica de trayectoria interactiva solo está disponible para 1 o 2 variables.")
 
-                # RIGHT: convergence
                 with col_g2:
                     st.markdown("#### Análisis de Convergencia")
                     if len(results) > 0:
