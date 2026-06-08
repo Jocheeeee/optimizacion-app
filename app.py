@@ -368,6 +368,7 @@ div[data-baseweb="popover"] li:hover, div[data-baseweb="popover"] li:hover * {
     box-shadow: 0 6px 20px rgba(88,166,255,0.25) !important;
 }
 .stButton > button:hover * { color: #ffffff !important; }
+.stButton > button p { white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; }
 
 /* RESOLVE BUTTON SPECIAL */
 .resolve-btn .stButton > button {
@@ -906,7 +907,7 @@ def main_app():
     </div>
     """, unsafe_allow_html=True)
 
-    def _insert(code):
+       def _insert(code):
         if code == "BACK":
             st.session_state.func_text = st.session_state.func_text[:-1]
         elif code == "CLEAR":
@@ -916,37 +917,37 @@ def main_app():
         st.session_state.func_ctr += 1
         st.rerun()
 
-    # Row 1 — Variables (dynamic + comunes)
+    _KB_PER_ROW = 9
+
+    def _render_keys(items, prefix):
+        for _start in range(0, len(items), _KB_PER_ROW):
+            _chunk = items[_start:_start + _KB_PER_ROW]
+            _cols = st.columns(_KB_PER_ROW)
+            for _ci, (_d, _code) in enumerate(_chunk):
+                with _cols[_ci]:
+                    if st.button(_d, key=f"{prefix}_{_start + _ci}", use_container_width=True):
+                        _insert(_code)
+
+    # Row 1 — Variables
     st.markdown('<p style="color:#58a6ff; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin:8px 0 2px;">Variables</p>', unsafe_allow_html=True)
     _user_vars = [(v, v) for v in vars_names]
     _extra_vars = [(v, v) for v in ['x', 'y', 'z', 'x1', 'x2', 'y1', 'y2'] if v not in vars_names]
-    _all_var_btns = (_user_vars + _extra_vars)[:8]
-    _vc = st.columns(len(_all_var_btns))
-    for _c, (_d, _code) in zip(_vc, _all_var_btns):
-        with _c:
-            if st.button(_d, key=f"kv_{_code}", use_container_width=True):
-                _insert(_code)
+    _render_keys((_user_vars + _extra_vars)[:9], "kv")
 
     # Row 2 — Operators
     st.markdown('<p style="color:#f97316; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin:8px 0 2px;">Operadores</p>', unsafe_allow_html=True)
-    _ops = [("(", "("), (")", ")"), ("²", "**2"), ("³", "**3"), ("^n", "**"),
-            ("×", "*"), ("÷", "/"), ("+", "+"), ("−", "-"), ("√(", "sqrt("), ("⌫", "BACK")]
-    _oc = st.columns(len(_ops))
-    for _c, (_d, _code) in zip(_oc, _ops):
-        with _c:
-            if st.button(_d, key=f"ko_{_d}", use_container_width=True):
-                _insert(_code)
+    _ops = [("(", "("), (")", ")"), ("x²", "**2"), ("x³", "**3"), ("xⁿ", "**"),
+            ("×", "*"), ("÷", "/"), ("+", "+"), ("−", "-"), ("√", "sqrt("), ("⌫", "BACK")]
+    _render_keys(_ops, "ko")
 
     # Row 3 — Functions
     st.markdown('<p style="color:#bc8cff; font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; margin:8px 0 2px;">Funciones</p>', unsafe_allow_html=True)
-    _fns = [("ln()", "log("), ("log()", "log10("), ("eˣ", "exp("),
-            ("sin()", "sin("), ("cos()", "cos("), ("tan()", "tan("),
-            ("|x|", "abs("), ("π", "3.14159265"), ("e", "2.71828182"), ("🗑 Borrar", "CLEAR")]
-    _fc = st.columns(len(_fns))
-    for _c, (_d, _code) in zip(_fc, _fns):
-        with _c:
-            if st.button(_d, key=f"kf_{_d}", use_container_width=True):
-                _insert(_code)
+    _fns = [("ln", "log("), ("log", "log10("), ("eˣ", "exp("),
+            ("sin", "sin("), ("cos", "cos("), ("tan", "tan("),
+            ("|x|", "abs("), ("π", "3.14159265"), ("e", "2.71828182"), ("🗑", "CLEAR")]
+    _render_keys(_fns, "kf")
+
+    st.markdown("<br>", unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
