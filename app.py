@@ -1047,7 +1047,7 @@ def main_app():
     with gen1:
         max_iter = st.number_input("Iteraciones máximas", value=10, min_value=1)
     with gen2:
-        tolerancia = st.number_input("Tolerancia", value=0.001, format="%.4f",
+        tolerancia = st.number_input("Tolerancia", value=0.001, step=0.0001, format="%g",
                                      help="El algoritmo se detiene cuando el error relativo es menor a este valor.")
     with gen3:
         norm_type = st.selectbox("Norma para Error Relativo",
@@ -1067,30 +1067,30 @@ def main_app():
         pc1, _pc2, _pc3 = st.columns(3)
         with pc1:
             if alpha_type == "Fijo":
-                cg_alpha_val = st.number_input("Valor de α", value=0.01, format="%.4f")
+                cg_alpha_val = st.number_input("Valor de α", value=0.01, step=0.01, format="%g")
             else:
-                cg_alpha_val = st.number_input("α inicial", value=1.0, format="%.4f")
+                cg_alpha_val = st.number_input("α inicial", value=1.0, step=0.1, format="%g")
     else:  # Gradiente
         alpha_type = st.radio("Estrategia:", ["Fijo", "Wolfe (Armijo)"], index=1, horizontal=True)
         if alpha_type == "Fijo":
             pc1, _pc2, _pc3 = st.columns(3)
             with pc1:
-                alpha_val = st.number_input("Valor de α", value=0.01, format="%.4f")
+                alpha_val = st.number_input("Valor de α", value=0.01, step=0.01, format="%g")
         else:
             alpha_val = 0.0
             wolfe_params = {}
             wp1, wp2, wp3, wp4 = st.columns(4)
             with wp1:
-                wolfe_params['alpha_init'] = st.number_input("α₀ inicial", value=0.5, format="%.4f",
+                wolfe_params['alpha_init'] = st.number_input("α₀ inicial", value=0.5, step=0.1, format="%g",
                                                              help="Paso inicial antes de reducir con backtracking.")
             with wp2:
-                wolfe_params['rho'] = st.number_input("ρ (reducción)", value=0.5, format="%.4f",
+                wolfe_params['rho'] = st.number_input("ρ (reducción)", value=0.5, step=0.1, format="%g",
                                                       help="Factor por el que se reduce α en cada intento.")
             with wp3:
-                wolfe_params['c1'] = st.number_input("β (Armijo)", value=0.25, format="%.4f",
+                wolfe_params['c1'] = st.number_input("β (Armijo)", value=0.25, step=0.05, format="%g",
                                                     help="Constante de la condición de descenso suficiente (Armijo).")
             with wp4:
-                wolfe_sigma = st.number_input("σ (Curvatura)", value=0.5, format="%.4f",
+                wolfe_sigma = st.number_input("σ (Curvatura)", value=0.5, step=0.1, format="%g",
                                              help="Constante de la condición de curvatura (2da condición de Wolfe).")
 
     st.markdown("<br>", unsafe_allow_html=True)
