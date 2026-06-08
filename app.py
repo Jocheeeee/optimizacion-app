@@ -958,13 +958,10 @@ def main_app():
             _syms_p = sp.symbols(' '.join(vars_names))
             _syms_p = [_syms_p] if len(vars_names) == 1 else list(_syms_p)
             _expr_p = parse_function(func_input, _syms_p)
-            if _expr_p is not None:
-                st.markdown('<div style="margin-top:8px; padding:10px 16px; background:rgba(63,185,80,0.06); border:1px solid rgba(63,185,80,0.2); border-radius:8px; text-align:center;">', unsafe_allow_html=True)
+                       if _expr_p is not None:
+                st.markdown('<p style="color:#3fb950; font-size:12px; font-weight:600; margin:8px 0 -4px;">✅ Función reconocida:</p>', unsafe_allow_html=True)
                 st.latex(sp.latex(_expr_p))
-                st.markdown('</div>', unsafe_allow_html=True)
             elif func_input.strip():
-                st.markdown('<p style="color:#f85149; font-size:12px; margin-top:6px;">⚠ Función no reconocida — revisa la sintaxis</p>', unsafe_allow_html=True)
-        except Exception:
             pass
     with col3:
         start_point = st.text_input(
