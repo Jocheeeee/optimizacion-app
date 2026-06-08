@@ -505,6 +505,20 @@ def parse_start_point(raw):
             vals.append(float(p))
     return vals
 
+def pretty_latex(s):
+    """Convierte el texto del usuario a LaTeX RESPETANDO su orden exacto
+    (no usa SymPy, así no reordena los términos)."""
+    s = s.replace(' ', '')
+    s = re.sub(r'(\d),(\d)', r'\1.\2', s)
+    s = s.replace('**', '^')
+    s = re.sub(r'\^(\-?\d+\.?\d*)', r'^{\1}', s)
+    s = re.sub(r'\bln\b', r'\\ln ', s)
+    s = re.sub(r'\bexp\b', r'\\exp ', s)
+    s = re.sub(r'\bsqrt\b', r'\\sqrt', s)
+    s = re.sub(r'\b(sin|cos|tan|log)\b', r'\\\1 ', s)
+    s = s.replace('*', r' \cdot ')
+    return s
+
 def compute_gradient(expr, variables):
     return [sp.diff(expr, var) for var in variables]
 
@@ -892,8 +906,8 @@ def main_app():
             _syms_p = [_syms_p] if len(vars_names) == 1 else list(_syms_p)
             _expr_p = parse_function(func_input, _syms_p)
             if _expr_p is not None:
-                st.markdown('<p style="color:#3fb950; font-size:12px; font-weight:600; margin:8px 0 -4px;">✅ Función reconocida <span style="color:#8b949e; font-weight:400;">(el orden de los términos puede variar, es la misma función)</span>:</p>', unsafe_allow_html=True)
-                st.latex(sp.latex(_expr_p, order='none'))
+                st.markdown('<p style="color:#3fb950; font-size:12px; font-weight:600; margin:8px 0 4px;">✅ Función reconocida:</p>', unsafe_allow_html=True)
+                st.latex(pretty_latex(func_input))
             elif func_input.strip():
                 st.markdown('<p style="color:#f85149; font-size:12px; margin-top:6px;">⚠ Función no reconocida — revisa la sintaxis</p>', unsafe_allow_html=True)
         except Exception:
