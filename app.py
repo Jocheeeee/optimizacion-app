@@ -534,11 +534,11 @@ def parse_function(func_str, vars_list):
 
         varset = set(var_names)
         def can_split(symbol):
-            if symbol in varset:                    # no partir variables declaradas
+            if symbol in varset:
                 return False
-            if any(c.isdigit() for c in symbol):    # no partir x1, x2, ...
+            if any(c.isdigit() for c in symbol):
                 return False
-            return _token_splittable(symbol)        # parte 'xy' pero respeta 'exp', 'pi'
+            return _token_splittable(symbol)
 
         T = (standard_transformations + (
             convert_xor, split_symbols_custom(can_split),
@@ -546,7 +546,6 @@ def parse_function(func_str, vars_list):
         ld = {v: sp.Symbol(v) for v in var_names}
         return parse_expr(s, transformations=T, local_dict=ld)
     except Exception:
-        # Fallback: método simple (por si algo raro falla)
         try:
             s = func_str.replace('^', '**').replace('ln', 'log')
             s = re.sub(r'(\d),(\d)', r'\1.\2', s)
@@ -562,8 +561,8 @@ def parse_start_point(raw):
     parts = raw.split(';') if ';' in raw else re.split(r'\s+', raw)
     vals = []
     for p in parts:
-        p = p.strip().replace(',', '.')          # coma decimal -> punto
-        p = re.sub(r'[^0-9.\-]', '', p)           # limpiar basura
+        p = p.strip().replace(',', '.')
+        p = re.sub(r'[^0-9.\-]', '', p)
         if p:
             vals.append(float(p))
     return vals
@@ -958,10 +957,12 @@ def main_app():
             _syms_p = sp.symbols(' '.join(vars_names))
             _syms_p = [_syms_p] if len(vars_names) == 1 else list(_syms_p)
             _expr_p = parse_function(func_input, _syms_p)
-                       if _expr_p is not None:
+            if _expr_p is not None:
                 st.markdown('<p style="color:#3fb950; font-size:12px; font-weight:600; margin:8px 0 -4px;">✅ Función reconocida:</p>', unsafe_allow_html=True)
                 st.latex(sp.latex(_expr_p))
             elif func_input.strip():
+                st.markdown('<p style="color:#f85149; font-size:12px; margin-top:6px;">⚠ Función no reconocida — revisa la sintaxis</p>', unsafe_allow_html=True)
+        except Exception:
             pass
     with col3:
         start_point = st.text_input(
